@@ -1,7 +1,10 @@
 name: compile_dart2js
 description: A sample command-line application with basic argument parsing.
-version: 0.0.1
+version: 1.0.0
 # repository: https://github.com/my_org/my_repo
+
+executables:
+  compile_dart2js:
 
 environment:
   sdk: ^3.3.4
