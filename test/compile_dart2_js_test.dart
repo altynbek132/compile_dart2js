@@ -16,7 +16,7 @@ void main() {
     });
 
     test('should compile a single file', () async {
-      await compileDart2Js(assetsDir, 'main.dart', fvm: true);
+      await compileDart2Js(assetsDir, 'main.dart', fvm: false);
       expect(await File('$assetsDir/main.dart.js').exists(), true);
       expect(await File('$assetsDir/main2.dart.js').exists(), false);
     });
@@ -25,7 +25,7 @@ void main() {
       const globPattern = '*.dart';
 
       await expectLater(
-        () => compileDart2Js(dir, globPattern, fvm: true),
+        () => compileDart2Js(dir, globPattern, fvm: false),
         throwsA(isA<FileSystemException>()),
       );
     });
@@ -33,7 +33,7 @@ void main() {
     test('should compile multiple files', () async {
       const globPattern = '*.dart';
 
-      await compileDart2Js(assetsDir, globPattern, fvm: true);
+      await compileDart2Js(assetsDir, globPattern, fvm: false);
 
       expect(await File('$assetsDir/main.dart.js').exists(), true);
       expect(await File('$assetsDir/main2.dart.js').exists(), true);
@@ -41,7 +41,7 @@ void main() {
     test('should obey glob pattern', () async {
       const globPattern = '*_compile_js.dart';
 
-      await compileDart2Js(assetsDir, globPattern, fvm: true);
+      await compileDart2Js(assetsDir, globPattern, fvm: false);
 
       expect(await File('$assetsDir/foo_compile_js.dart.js').exists(), true);
       expect(await File('$assetsDir/bar_compile_js.dart.js').exists(), true);
