@@ -1,30 +1,39 @@
-# This file configures the static analysis results for your project (errors,
-# warnings, and lints).
-#
-# This enables the 'recommended' set of lints from `package:lints`.
-# This set helps identify many issues that may lead to problems when running
-# or consuming Dart code, and enforces writing Dart using a single, idiomatic
-# style and format.
-#
-# If you want a smaller set of lints you can change this to specify
-# 'package:lints/core.yaml'. These are just the most critical lints
-# (the recommended set includes the core lints).
-# The core lints are also what is used by pub.dev for scoring packages.
+include: package:flutter_lints/flutter.yaml
 
-include: package:lints/recommended.yaml
+# * // ignore: name_of_lint
+# * // ignore_for_file: name_of_lint
 
-# Uncomment the following section to specify additional rules.
+analyzer:
+  plugins:
+    - ac_code_metrics
 
-# linter:
-#   rules:
-#     - camel_case_types
+  exclude:
+    - "**/*.*.*.dart"
 
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+ac_code_metrics:
+  rules:
+    - avoid-collection-methods-with-unrelated-types:
+        severity: error
 
-# For more information about the core and recommended set of lints, see
-# https://dart.dev/go/core-lints
+linter:
+  # true - active
+  # false - inactive
 
-# For additional information about configuring this file, see
-# https://dart.dev/guides/language/analysis-options
+  rules:
+    require_trailing_commas: true
+    prefer_final_locals: true
+
+    avoid_single_cascade_in_expression_statements: false
+    unnecessary_brace_in_string_interps: false
+    avoid_print: false
+
+    # ======================FOR DEBUG====================================
+    # prefer_const_constructors: false
+    # prefer_const_literals_to_create_immutables: false
+    # require_trailing_commas: false
+
+    # ==========================IGNORE NAMING================================
+    # no_leading_underscores_for_local_identifiers: false
+    # non_constant_identifier_names: false
+    # constant_identifier_names: false
+    # camel_case_types: false
