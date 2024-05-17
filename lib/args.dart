@@ -3,7 +3,6 @@ import 'package:args/args.dart';
 abstract class Args {
   static const String help = 'help';
   static const String version = 'version';
-  static const String dir = 'dir';
   static const String pattern = 'pattern';
   static const String fvm = 'fvm';
 }
@@ -22,26 +21,14 @@ ArgParser buildParser() {
           help: 'Print the tool version.',
         )
         //
-        ..addFlag(
-          Args.dir,
-          negatable: false,
-          defaultsTo: true,
-          help: """
-Directory to compile.
-
-Example: 'web'
-Default: '.'
-"""
-              .trim(),
-        )
-        ..addFlag(
+        ..addOption(
           Args.pattern,
-          negatable: false,
+          defaultsTo: '*_js.dart',
           help: """
 Glob pattern to compile.
 
-Example: 'web/*.dart'
-Default: '*.dart'
+Example: 'web/*_js.dart'
+Default: '*_js.dart'
 """
               .trim(),
         )

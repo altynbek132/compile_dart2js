@@ -5,7 +5,7 @@ import 'package:compile_dart2js/compile_dart2_js.dart';
 const String version = '0.0.1';
 
 void printUsage(ArgParser argParser) {
-  print('Usage: dart compile_dart2js.dart <flags> [arguments]');
+  print('Usage: dart compile_dart2js.dart <flags> [dir]');
   print(argParser.usage);
 }
 
@@ -24,9 +24,9 @@ Future<void> main(List<String> arguments) async {
       return;
     }
 
-    final dir = results[Args.dir] as String? ?? '.';
-    final globPattern = results[Args.pattern] as String? ?? '*.dart';
-    final fvm = results[Args.fvm] as bool? ?? false;
+    final dir = results.rest.first;
+    final globPattern = results[Args.pattern];
+    final fvm = results[Args.fvm];
 
     await compileDart2Js(dir, globPattern, fvm: fvm);
   } on FormatException catch (e) {
