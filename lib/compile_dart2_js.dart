@@ -11,28 +11,30 @@ Future<void> compileDart2Js(
   bool fvm = false,
 }) async {
   final files = getFiles(dir, globPattern);
-  await for (final file in files) {
-    print('Compiling $file');
-    final process = await Process.start(
-      '',
-      [
-        if (fvm) 'fvm',
-        'dart',
-        'compile',
-        'js',
-        '-o',
-        '${file}.js',
-        file,
-      ],
-      runInShell: true,
-    );
-    stdout.addStreamNonBlocking(process.stdout);
-    stderr.addStreamNonBlocking(process.stderr);
-    if (await process.exitCode != 0) {
-      print('Error compiling $file');
-      print(process.stderr);
-    }
-  }
+  await Future.wait(
+    (await files.toList()).map((file) async {
+      print('Compiling $file');
+      final process = await Process.start(
+        '',
+        [
+          if (fvm) 'fvm',
+          'dart',
+          'compile',
+          'js',
+          '-o',
+          '${file}.js',
+          file,
+        ],
+        runInShell: true,
+      );
+      stdout.addStreamNonBlocking(process.stdout);
+      stderr.addStreamNonBlocking(process.stderr);
+      if (await process.exitCode != 0) {
+        print('Error compiling $file');
+        print(process.stderr);
+      }
+    }),
+  );
 }
 
 Stream<String> getFiles(String dir, String globPattern) async* {
