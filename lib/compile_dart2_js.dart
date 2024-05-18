@@ -1,9 +1,10 @@
-import 'package:compile_dart2js/stream_sink_add_stream_non_blocking_extension.dart';
 import 'package:glob/glob.dart';
 import 'package:glob/list_local_fs.dart';
 
 import 'dart:async';
 import 'dart:io';
+
+import 'package:utils/utils_dart/stream_sink_add_stream_non_blocking_extension.dart';
 
 Future<void> compileDart2Js(
   String dir,
