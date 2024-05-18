@@ -1,7 +1,8 @@
 name: compile_dart2js
 description: A sample command-line application with basic argument parsing.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/altynbek132/compile_dart2js
+publish_to: none
 
 executables:
   compile_dart2js:
@@ -13,6 +14,12 @@ environment:
 dependencies:
   args: ^2.4.2
   glob: ^2.1.2
+
+  utils:
+    git:
+      url: https://github.com/altynbek132/flutter_util_packages
+      path: packages/utils
+      ref: 03cd2829873ce302ddfc783a97599cce05a74891
 
 dev_dependencies:
   flutter_lints: ^3.0.2
