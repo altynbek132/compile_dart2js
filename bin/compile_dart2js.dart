@@ -14,8 +14,12 @@ Future<void> main(List<String> arguments) async {
   try {
     final ArgResults results = argParser.parse(arguments);
 
+    final dir = results.rest.firstOrNull;
+    final globPattern = results[Args.pattern];
+    final fvm = results[Args.fvm];
+
     // Process the parsed arguments.
-    if (results.wasParsed(Args.help)) {
+    if (results.wasParsed(Args.help) || dir == null) {
       printUsage(argParser);
       return;
     }
@@ -23,10 +27,6 @@ Future<void> main(List<String> arguments) async {
       print('compile_dart2js version: $version');
       return;
     }
-
-    final dir = results.rest.first;
-    final globPattern = results[Args.pattern];
-    final fvm = results[Args.fvm];
 
     await compileDart2Js(dir, globPattern, fvm: fvm);
   } on FormatException catch (e) {
