@@ -26,9 +26,7 @@ ArgParser buildParser() {
           defaultsTo: '*_js.dart',
           help: """
 Glob pattern to compile.
-
 Example: 'web/*_js.dart'
-Default: '*_js.dart'
 """
               .trim(),
         )
