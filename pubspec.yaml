@@ -19,7 +19,6 @@ dependencies:
     git:
       url: https://github.com/altynbek132/flutter_util_packages
       path: packages/utils
-      ref: 03cd2829873ce302ddfc783a97599cce05a74891
 
 dev_dependencies:
   flutter_lints: ^3.0.2
